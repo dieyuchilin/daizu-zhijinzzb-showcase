@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<style>
+.process-section{width:100%;margin: 0  auto;display: flex;
+}
+.process-section .process-left{flex:1 ;margin-right: 32px;
+}
+.process-section .process-right{flex:1 ;
+}
+.process-item{display: flex;height: 140px;background-color: #f4f4f4;
+}
+.process-item .material-write{flex: 1;padding: 20px;padding-right: 0px;
+}
+.process-item .material-write h3{
+    margin-bottom: -10px;
+    margin-top: -8px;
+}
+.process-item{margin-bottom: 32px;
+}
+.process-item .material-photo{margin-left:32px;flex: 0.5;
+}
+.process-item .material-photo img{width: 100%;height: 100%;
+}
+.process_last{margin: 0 auto;width: 100%;background-color:#f4f4f4;padding: 20px;
+    box-sizing: border-box;
+}
+/* 制作工艺工具 */
+.production-tools {
+            display: flex;
+            justify-content: space-between;
+            gap: 35px;
+            margin-bottom: 40px;
+        }
+
+       .production-tools div {
+        flex: 1;
+        }
+
+       .production-tools img {
+            width: 100%;
+            height: 250px;
+        }
+</style>
+<body>
+    <!-- 导航条 -->
+    <header>
+        <div class="navbar-content">
+            <nav class="navbar">
+                <div class="nav_w">
+                    <div class="logo" style="font-family: '微软雅黑';">
+                        傣族织锦纹样数字衍生品展示平台
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="history.html">历史渊源</a></li>
+                        <li><a href="production.html" style="font-weight: bolder; border-bottom: 2px solid #F5D76E;">制作工艺</a></li>
+                        <li><a href="zhanban.html">展板设计</a></li>
+                        <li><a href="culture.html">文化内涵</a></li>
+                        <li><a href="artists.html">传承艺人</a></li>
+                        <li><a href="protection.html">联系我们</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- 轮播图 -->
+    <div class="slider">
+        <div class="slide active">
+            <img src="images/ban1.jpg" alt="轮播图1">
+        </div>
+        <div class="slide">
+            <img src="images/ban2.jpg" alt="轮播图2">
+        </div>
+        <div class="slide">
+            <img src="images/ban3.jpg" alt="轮播图3">
+        </div>
+    </div> 
+    <!-- 主要内容 -->
+    <div class="content_mount">
+            <div class="content_box">
+                <div class="school_title" style="margin-top: 50px;">
+                    <p class="school_big">The Production Process Of Intangible Cultural Heritage</p>
+                    <p class="school_font">非遗傣族织锦的制作工艺</p>
+                    <div class="xian"></div>
+                    <div class="hou" style="margin-bottom: 45px;"></div>
+                </div>
+                 <!-- 制作工艺流程部分 -->
+                 <section class="process-section">
+                    <div class="process-left">
+                        <div class="process-item">
+                            <div class="material-write filter-age-desc">
+                                <h3>选料与纺线</h3>
+                                <p class="hui">傣族织锦选用天然棉线、丝线为原料，部分传统工艺使用植物纤维。丝线需经过梳理、纺线、卷线等工序，让线体均匀细腻，为织造打下坚实基础，保证织锦质感细腻、牢固耐用。</p>
+                            </div>
+                            <div class="material-photo">
+                                <img src="images/product1.jpg" alt="选料">    
+                            </div>
+                        </div>
+                        <div class="process-item">
+                            <div class="material-write filter-age-desc">
+                                <h3>植物染色</h3>
+                                <p class="hui">采用傣族传统天然植物染色技艺，使用苏木、黄姜、板蓝根等植物提取染料，不添加化学制剂。通过浸泡、蒸煮、晾晒等步骤，让丝线染上自然色彩，色牢度高且环保健康，充满自然气息。</p>
+                            </div>
+                            <div class="material-photo">
+                                <img src="images/bamboo_process.jpg" alt="制骨">    
+                            </div>
+                        </div>
+                        <div class="process-item">
+                            <div class="material-write filter-age-desc">
+                                <h3>整经与排线</h3>
+                                <p class="hui">将染好的彩线按设计方案进行整经、排线，确定织锦的尺寸、纹样与色彩分布。匠人凭借经验手工排列经线，保证张力均匀，为腰机织造做好准备，是织锦图案成型的关键步骤。</p>
+                            </div>
+                            <div class="material-photo">
+                                <img src="images/paper_mounting.jpg" alt="裱伞">    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="process-right">
+                        <div class="process-item">
+                            <div class="material-photo" style="margin-left: 0; margin-right: 32px;">
+                                <img src="images/pattern_painting.jpg" alt="绘制">    
+                            </div>
+                            <div class="material-write filter-age-desc" style="padding-left: 0px; padding: 20px; ">
+                                <h3>挑花结本</h3>
+                                <p class="hui">以线为笔，以记忆为谱，匠人通过挑花结本技艺设计纹样，无需图纸，将孔雀、大象、水波纹等图案牢记心中，手工控制纬线走向，是傣族织锦最核心、最具特色的技艺。</p>
+                            </div>
+                        </div>
+                        <div class="process-item">
+                            <div class="material-photo" style="margin-left: 0; margin-right: 32px;">
+                                <img src="images/oil_application.jpg" alt="上油">    
+                            </div>
+                            <div class="material-write filter-age-desc" style="padding-left: 0px; padding: 20px; ">
+                                <h3>腰机织造</h3>
+                                <p class="hui">使用传统手工腰机，匠人席地而坐，以身体为支架，手脚配合穿梭引线，逐根织造纹样。织造过程耗时费力，一天仅能完成几厘米，每一幅织锦都是匠人时间与心血的结晶。</p>
+                            </div>      
+                        </div>
+                        <div class="process-item">
+                            <div class="material-photo" style="margin-left: 0; margin-right: 32px;">
+                                <img src="images/final_assembly.jpg" alt="组装">    
+                            </div>
+                            <div class="material-write filter-age-desc" style="padding-left: 0px; padding: 20px; ">
+                                <h3>剪裁与缝合</h3>
+                                <p  class="hui">织造完成后，按用途进行剪裁、缝合、锁边，制作成服饰、壁挂、背包、装饰等成品。每一道工序均为手工完成，保证织锦精致美观，兼具实用性与艺术性。</p>
+                            </div>          
+                        </div>     
+                    </div>
+                </section> 
+                <div class="process_last">
+                    <div class="process-item-last">
+                        <div class="material-write">
+                            <h3>检验与整理</h3>
+                            <p class="hui">成品需经过严格检验，检查纹样完整性、线体牢固度与色彩均匀度，匠人对瑕疵处进行修补整理。最终完成的傣族织锦色彩绚丽、纹样精美，承载千年民族文化，是国家级非遗技艺的完美呈现。</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 制作工艺工具  -->
+                <div class="school_title" style="margin-top: 50px;">
+                    <p class="school_big"> Intangible Cultural Tool</p>
+                    <p class="school_font">傣族织锦的制作工具</p>
+                    <div class="xian"></div>
+                    <div class="hou" style="margin-bottom: 45px;"></div>
+                </div>
+                <div class="production-tools">
+                    <div>
+                        <img src="images/tool1.jpg" alt="工具图片1">
+                    </div>
+                    <div>
+                        <img src="images/tool2.jpg" alt="工具图片2">
+                    </div>
+                    <div>
+                        <img src="images/tool3.jpg" alt="工具图片3">
+                    </div>
+                </div>
+
+            </div>
+    </div>
+    <!-- 底部 -->
+    <footer>
+            <div class="footer-container">
+                <div class="about-us">
+                    <h3>关于我们</h3>
+                    <p style="text-align: left;">非遗文化傣族织锦宣传网致力于推广非遗傣族织锦文化，为大众提供最全面、最深入的傣族织锦知识和相关服务。</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa fa-wechat"></i></a>
+                        <a href="#"><i class="fa fa-qq"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-douyin"></i></a>
+                    </div>
+                </div>
+                <div class="quick-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">历史渊源</a></li>
+                        <li><a href="#">制作工艺</a></li>
+                        <li><a href="#">样式种类</a></li>
+                        <li><a href="#">文化内涵</a></li>
+                    </ul>
+                </div>
+                <div class="contact-us">
+                    <h3>联系我们</h3>
+                    <p>地址：[具体地址]</p>
+                    <p>电话：[电话号码]</p>
+                    <p>邮箱：admin@[邮箱域名]</p>
+                    <p>工作时间：周一至周五 9:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 傣族织锦纹样数字衍生品展示平台 版权所有 | 备[备案号]号</p>
+            </div>
+    </footer>
+</body>
+</html>

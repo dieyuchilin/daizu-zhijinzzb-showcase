@@ -1,0 +1,225 @@
+/* 全局样式 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8F4E9; /* 傣族织锦柔和底色 */
+    color: #3A2E2F; /* 文字改用深棕色，更高级 */
+}
+
+/* 导航栏样式 */
+.navbar-content {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #8B4C39; /* 傣族主色调：棕红色 */
+}
+
+.nav_w {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+    color: #fff;
+}
+
+.logo {
+    margin-right: 20px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 20px 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-size: 16px !important; /* 统一导航字号 */
+}
+
+.nav-links a:hover {
+    font-weight: bolder;
+    border-bottom: 2px solid #F5D76E; /* 金色下划线 */
+}
+
+/* ========== 强制统一所有页面导航大小 ========== */
+.nav-links li a {
+    font-size: 16px !important;
+    font-family: "微软雅黑", Arial, sans-serif !important;
+}
+.logo {
+    font-size: 22px !important;
+    font-family: "微软雅黑", Arial, sans-serif !important;
+}
+
+/* 轮播图样式 */
+.slider {
+    position: relative;
+    height: 640px;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 底部 */
+footer {
+    background-color: #6B3F29; /* 深棕色底部，更民族风 */
+    width: 100%;
+    color: #fff;
+    text-align: center;
+}
+
+.footer-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.about-us,
+.quick-links,
+.contact-us {
+    flex: 1;
+    font-size: 14px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #F5D76E; /* 金色图标 */
+    margin: 0 5px;
+    font-size: 20px;
+}
+
+.quick-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.quick-links ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.copyright {
+    font-size: 14px;
+    border-top: 1px solid #b7b6b6;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+/* 主要内容 */
+.content_mount {
+    width: 100%;
+}
+
+.content_box {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.school_title {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.school_title .school_big {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: -11px;
+    color: #8B4C39; /* 标题主色 */
+}
+
+.school_title .school_font {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.school_title .xian {
+    width: 60px;
+    height: 3px;
+    background-color: #A83A35; /* 红色装饰线 */
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 22px;
+    color: #8B4C39;
+}
+
+.hui {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 13px;
+    color: #474747;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.hui2 {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 13px;
+    color: #474747;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    overflow: hidden;
+}
+
+.hui3 {
+    font-size: 15px;
+    line-height: 1.8;
+    margin-top: 13px;
+    color: #474747;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

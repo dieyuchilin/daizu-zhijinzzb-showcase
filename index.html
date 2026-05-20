@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<style>
+  .oil-paper-umbrella-intro {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 500;
+
+        }
+        .school_title .school_big{
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 11px;
+}
+       .oil-paper-umbrella-intro .left-section {
+            flex: 2.2;
+            background-color: #f4f4f4;
+            padding-right: 30px;
+        }
+
+       .left-section h2 {
+            font-size: 20px;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+       .left-section p {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-top: 13px;
+            color: #474747;
+        }
+
+       .right-section {
+            flex: 1;
+        }
+
+       .detail-btn {
+            display: inline-block;
+            background-color: #A83A35;
+            color: white;
+            padding: 10px 40px;
+            text-decoration: none;
+            margin-top: 45px;
+            margin-bottom: 20px;
+        }
+
+       .right-section img {
+            width: 100%;
+            height: 235px;
+            margin-bottom: 10px;
+        }
+
+       .right-section ul li {
+            padding: 8px 0;
+        }
+
+       .li-content {
+            display: inline-block;
+            width: 70%;
+        }
+
+       .li-number {
+            display: inline-block;
+            width: 20%;
+            text-align: right;
+        }
+        .lost-items-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+   .lost-item {
+    flex: 1;
+    background-color: #f4f4f4;
+    }
+
+   .lost-item img {
+      width: 100%;
+      height: 240px;
+    }
+    .lost_bot{
+        padding:4px 15px 17px 15px;
+    }
+   .lost-item h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+   .lost-item p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.6;
+    }
+    /* 信息板块整体样式 */
+.info-section {
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+/* 单个信息项样式 保持左右横排不变 */
+.info-item {
+    flex: 1;
+  margin-bottom: 20px;
+  display: flex;
+  background-color: #f9f9f9;
+  margin-right: 32px;
+}
+
+/* 只改：图片为竖图比例，原有左右结构不动 */
+.info-item img {
+  width: 50%;
+  /* 高度拉高，变成竖图视觉，原布局不变 */
+  height: 260px;
+  display: block;
+  object-fit: cover;
+}
+
+/* 信息内容样式 */
+.info-content {
+  width: 50%;
+  padding: 20px;
+}
+
+.info-content h2 {
+  margin-top: 0;
+  color: #8B4C39;
+  font-size: 20px;
+}
+
+/* 按钮样式 */
+.btn {
+  display: inline-block;
+  background-color: #A83A35;
+  color: white;
+  padding: 10px 25px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+</style>
+<body>
+    <!-- 导航条 -->
+    <header >
+        <div class="navbar-content">
+            <nav class="navbar">
+                <div class="nav_w">
+                    <div class="logo" style="font-family: '微软雅黑';">
+                        傣族织锦纹样数字衍生品展示平台
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="index.html" style="font-weight: bolder; border-bottom: 2px solid #F5D76E;">首页</a></li>
+                        <li><a href="history.html">历史渊源</a></li>
+                        <li><a href="production.html">制作工艺</a></li>
+                        <li><a href="zhanban.html">展板设计</a></li>
+                        <li><a href="styles.html">傣锦纹样互动拼图</a></li>
+                        <li><a href="culture.html">文化内涵</a></li>
+                        <li><a href="artists.html">传承艺人</a></li>
+                        <li><a href="protection.html">联系我们</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- 轮播图 -->
+    <div class="slider">
+        <div class="slide active">
+            <img src="images/ban1.jpg" alt="轮播图1">
+        </div>
+        <div class="slide">
+            <img src="images/ban2.jpg" alt="轮播图2">
+        </div>
+        <div class="slide">
+            <img src="images/ban3.jpg" alt="轮播图3">
+        </div>
+    </div> 
+    <!-- 主要内容 -->
+    <div class="content_mount">
+            <div class="content_box">
+                <!-- 欢迎语 -->
+                <div class="oil-paper-umbrella-intro">
+                    <div class="left-section" style="padding-left: 30px;">
+                        <p>Welcome to the World of Dai Brocade</p>
+                        <h2>
+                            欢迎来到傣族织锦纹样数字衍生品展示平台
+                        </h2>
+                        <div style="width: 40px; height: 10px; background-color: #A83A35;"></div>
+                        <p>
+                            本网站是非遗傣族织锦文化传承与推广的重要平台，致力于全面展现国家级非物质文化遗产傣族织锦的历史底蕴、
+                            手工技艺、文化内涵与当代创新。通过数字化展示、技艺传承、文化传播，让千年织锦技艺被更多人看见、了解与热爱。
+                            在这里，你可以探索傣族织锦的千年历史、传统织造工艺、经典纹样寓意、非遗传承人故事，
+                            感受民族文化的独特魅力。我们以保护、传承、创新为使命，让傣族织锦在新时代焕发新生，
+                            让非遗文化真正活起来、传下去。
+                        </p>
+                        <a href="#" class="detail-btn">查看详情 >> </a>
+                    </div>
+                    <div class="right-section">
+                        <img src="images/umbrella.jpg" alt="傣族织锦展示">
+                        <ul>
+                            <li>
+                                <div class="li-content">
+                                    <span>传统手工织造技艺</span>
+                                </div>
+                                <span class="li-number">. 01 .</span>
+                            </li>
+                            <li>
+                                <div class="li-content">
+                                    <span>纹样寓意与文化价值</span>
+                                </div>
+                                <span class="li-number">. 02 .</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 傣族织锦文化 -->
+                <div class="school_title" style="margin-top: 50px;">
+                    <p class="school_big">Explore the Art of Dai Brocade</p>
+                    <p class="school_font">探索非遗傣族织锦的世界</p>
+                    <div class="xian"></div>
+                    <div class="hou" style="margin-bottom: 45px;"></div>
+                </div>
+                <div class="lost-items-list">
+                    <div class="lost-item">
+                        <img src="images/umbrella1.jpg" alt="八角花纹傣族织锦">
+                        <div class="lost_bot">
+                            <h3>八角花纹傣族织锦</h3>
+                            <p>寓意：象征太阳崇拜，代表光明与生命<br>用途：节庆服饰、壁挂、礼仪装饰</p>
+                        </div>
+                    </div>
+                    <div class="lost-item">
+                        <img src="images/umbrella2.jpg" alt="象鼻纹傣族织锦">
+                        <div class="lost_bot">
+                            <h3>象鼻纹傣族织锦</h3>
+                            <p>寓意：象征吉祥平安，寓意丰收富足<br>用途：服饰面料、文创背包、家居装饰</p>
+                        </div>
+                    </div>
+                    <div class="lost-item">
+                        <img src="images/umbrella3.jpg" alt="菱格纹傣族织锦">
+                        <div class="lost_bot">
+                            <h3>菱格纹傣族织锦</h3>
+                            <p>寓意：象征团结和睦，寓意生生不息<br>用途：服饰镶边、桌布、包装纹样</p>
+                        </div>
+                    </div>
+                    <div class="lost-item">
+                        <img src="images/umbrella4.jpg" alt="翘线纹傣族织锦">
+                        <div class="lost_bot">
+                            <h3>翘线纹傣族织锦</h3>
+                            <p>寓意：象征福气绵延，代表安康顺遂<br>用途：装饰画、挂毯、服饰纹样设计</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 傣族织锦咨询 -->
+                <div class="school_title" style="margin-top: 50px;">
+                    <p class="school_big">Uncover the Artistry of Dai Brocade</p>
+                    <p class="school_font">探寻傣族织锦的匠心艺术</p>
+                    <div class="xian"></div>
+                    <div class="hou" style="margin-bottom: 45px;"></div>
+                </div>
+                <section class="info-section">
+                    <div class="info-item">
+                        <img src="images/oil_paper_umbrella_history.jpg" alt="傣族织锦历史场景">
+                        <div class="info-content">
+                            <h2>01 历史溯源</h2>
+                            <p>追溯傣族织锦千年发展脉络，了解从秦汉起源到当代非遗的传承历程……</p>
+                            <a href="history.html" class="btn">深入了解</a>
+                        </div>
+                    </div>
+                    <div class="info-item" style="margin-right: 0;">
+                        <img src="images/oil_paper_umbrella_craft.jpg" alt="傣族织锦制作过程">
+                        <div class="info-content">
+                            <h2>02 工艺传承</h2>
+                            <p>解密手工织造、植物染色、纹样设计等核心工序，感受匠人坚守……</p>
+                            <a href="production.html" class="btn">观看工艺</a>
+                        </div>
+                    </div>
+                </section>
+                <section class="info-section">
+                    <div class="info-item">
+                        <img src="images/oil_paper_umbrella_style.jpg" alt="特色傣族织锦样式">
+                        <div class="info-content">
+                            <h2>03 艺术美学</h2>
+                            <p>欣赏孔雀、大象、水波纹等经典纹样，领略傣族独特东方美学……</p>
+                            <a href="culture.html" class="btn">品味美学</a>
+                        </div>
+                    </div>
+                    <div class="info-item" style="margin-right: 0;">
+                        <img src="images/oil_paper_umbrella_activity.jpg" alt="傣族织锦文化活动">
+                        <div class="info-content">
+                            <h2>04 文化体验</h2>
+                            <p>体验纹样拼图设计小游戏，亲手感受民族技艺魅力……</p>
+                            <a href="styles.html" class="btn">立即体验</a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+    </div>
+    <!-- 底部 -->
+    <footer>
+            <div class="footer-container">
+                <div class="about-us">
+                    <h3>关于我们</h3>
+                    <p style="text-align: left;">傣族织锦纹样数字衍生品展示平台致力于推广非遗傣族织锦文化，为大众提供最全面、最深入的傣族织锦知识和相关服务。</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa fa-wechat"></i></a>
+                        <a href="#"><i class="fa fa-qq"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-douyin"></i></a>
+                    </div>
+                </div>
+                <div class="quick-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#">首页</a></li>
+                        <li><a href="#">历史渊源</a></li>
+                        <li><a href="#">制作工艺</a></li>
+                        <li><a href="#">样式种类</a></li>
+                        <li><a href="#">文化内涵</a></li>
+                    </ul>
+                </div>
+                <div class="contact-us">
+                    <h3>联系我们</h3>
+                    <p>地址：[具体地址]</p>
+                    <p>电话：[电话号码]</p>
+                    <p>邮箱：admin@[邮箱域名]</p>
+                    <p>工作时间：周一至周五 9:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 傣族织锦纹样数字衍生品展示平台 版权所有 | 备[备案号]号</p>
+            </div>
+    </footer>
+    <script>
+        // 简单的轮播图切换逻辑
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>傣族织锦纹样数字衍生品展示平台</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<style>
+.timeline {
+    position: relative;
+    padding: 0 5px;
+    box-sizing: border-box; 
+    height: auto;   
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: #d4d4d4;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item {
+    position: relative;
+    margin: 20px 0;
+    padding: 20px;
+    width: 42%;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 55%;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 29px;
+    background-color: #A83A35;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item:nth-child(odd)::before {
+    right: -11px;
+}
+
+.timeline-item:nth-child(even)::before {
+    left: -9px;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.timeline-item:nth-child(odd)::after {
+    border-left: 10px solid #ffffff;
+    right: -10px;
+}
+
+.timeline-item:nth-child(even)::after {
+    border-right: 10px solid #ffffff;
+    left: -10px;
+}
+
+.timeline-item[data-date]::before {
+    content: attr(data-date);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #fff;
+    width: 120px;
+    text-align: center;
+}
+
+.timeline-item:nth-child(odd)[data-date]::before {
+    right: -130px;
+}
+
+.timeline-item:nth-child(even)[data-date]::before {
+    left: -130px;
+}
+
+.timeline-item p {
+    margin: 0;
+    color: #A83A35;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.timeline-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+/* 新增图文并排样式 */
+.time-box{
+    display: flex;
+    gap:15px;
+    align-items: center;
+}
+.time-box img{
+    width:100px;
+    height:100px;
+    object-fit: contain;
+    border:1px solid #eee;
+}
+.time-text{
+    flex:1;
+}
+</style>
+<body>
+    <!-- 导航条 -->
+    <header>
+        <div class="navbar-content">
+            <nav class="navbar">
+                <div class="nav_w">
+                    <div class="logo" style="font-family: '微软雅黑';">
+                        傣族织锦纹样数字衍生品展示平台
+                    </div>
+                    <ul class="nav-links">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="history.html" style="font-weight: bolder; border-bottom: 2px solid #fff;">历史渊源</a></li>
+                        <li><a href="production.html">制作工艺</a></li>
+                        <li><a href="zhanban.html">展板设计</a></li>
+                        <li><a href="culture.html">文化内涵</a></li>
+                        <li><a href="artists.html">传承艺人</a></li>
+                        <li><a href="protection.html">联系我们</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- 轮播图 -->
+    <div class="slider">
+        <div class="slide active">
+            <img src="images/ban1.jpg" alt="轮播图1">
+        </div>
+        <div class="slide">
+            <img src="images/ban2.jpg" alt="轮播图2">
+        </div>
+        <div class="slide">
+            <img src="images/ban3.jpg" alt="轮播图3">
+        </div>
+    </div> 
+    <!-- 主要内容 -->
+    <div class="content_mount">
+            <div class="content_box">
+                <div class="school_title" style="margin-top: 50px;">
+                    <p class="school_big">Explore the Art of Dai Brocade</p>
+                    <p class="school_font">探索非遗傣族织锦历史溯源</p>
+                    <div class="xian"></div>
+                    <div class="hou" style="margin-bottom: 45px;"></div>
+                </div>
+                <div class="timeline w">
+                    <div class="timeline-item" data-date="东汉时期">
+                        <div class="time-box">
+                            <img src="images/history_line1.png" alt="东汉织锦线稿">
+                            <div class="time-text">
+                                <p>傣族先民已掌握种桑养蚕、纺织染色技艺，能织成彩色布帛并加以刺绣，据《后汉书》记载，哀牢人可织成文章如绫锦，是傣锦最早的历史记载。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="唐代">
+                        <div class="time-box">
+                            <img src="images/history_line2.png" alt="唐代织锦线稿">
+                            <div class="time-text">
+                                <p>傣锦技艺初具规模，以娑罗树子纺线织布，制成“五色娑罗笼”衣裙，成为男女通用服饰，织造技艺与材料应用日趋成熟。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="宋元时期">
+                        <div class="time-box">
+                            <img src="images/history_line3.png" alt="宋元织锦线稿">
+                            <div class="time-text">
+                                <p>傣锦缫丝织造技艺高度发展，丝织傣锦质地细软、色泽艳丽、纹样繁复，产量高且普及广泛，平民与贵族皆穿戴使用。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="明代">
+                        <div class="time-box">
+                            <img src="images/history_line4.png" alt="明代织锦线稿">
+                            <div class="time-text">
+                                <p>织造工艺趋于完善，蚕丝五色锦闻名天下，丝幔帐、兜罗锦、绒锦等成为贡品，技艺成熟且深受宫廷与贵族青睐。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="清代">
+                        <div class="time-box">
+                            <img src="images/history_line5.png" alt="清代织锦线稿">
+                            <div class="time-text">
+                                <p>傣锦纹样体系成熟，寓意系统完善，织造技艺在民间稳定传承，广泛应用于服饰、礼仪、宗教等场景，成为文化核心载体。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="民国时期">
+                        <div class="time-box">
+                            <img src="images/history_line6.png" alt="民国织锦线稿">
+                            <div class="time-text">
+                                <p>传统织造技艺在民间持续流传，虽受时代冲击，仍由民间艺人坚守传承，在婚俗、节庆中发挥重要文化作用。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="新中国成立后">
+                        <div class="time-box">
+                            <img src="images/history_line7.png" alt="建国后织锦线稿">
+                            <div class="time-text">
+                                <p>国家重视民族手工艺保护，傣锦得到系统整理与传承，建立传承基地，培养新一代匠人，技艺得以延续发展。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="21世纪初">
+                        <div class="time-box">
+                            <img src="images/history_line8.png" alt="21世纪织锦线稿">
+                            <div class="time-text">
+                                <p>傣族织锦入选国家级非物质文化遗产，传统工艺受到全面保护，开始与现代文创设计结合，逐步走向市场与国际。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-date="新时代">
+                        <div class="time-box">
+                            <img src="images/history_line9.png" alt="新时代织锦线稿">
+                            <div class="time-text">
+                                <p>坚守手工织造传统，纹样与色彩愈发精美，应用场景不断拓展，在服饰、文创、装饰等领域创新发展，实现活态传承。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- 底部 -->
+    <footer>
+            <div class="footer-container">
+                <div class="about-us">
+                    <h3>关于平台</h3>
+                    <p style="text-align: left;">本平台为傣族织锦纹样数字衍生品设计及展示平台，致力于非遗织锦文化的数字化保护、创新设计与传播推广。</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa fa-wechat"></i></a>
+                        <a href="#"><i class="fa fa-qq"></i></a>
+                        <a href="#"><i class="fa fa-weibo"></i></a>
+                        <a href="#"><i class="fa fa-douyin"></i></a>
+                    </div>
+                </div>
+                <div class="quick-links">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="history.html">历史渊源</a></li>
+                        <li><a href="production.html">制作工艺</a></li>
+                        <li><a href="styles.html">纹样衍生品</a></li>
+                        <li><a href="culture.html">文化内涵</a></li>
+                    </ul>
+                </div>
+                <div class="contact-us">
+                    <h3>联系我们</h3>
+                    <p>地址：云南省西双版纳傣族自治州</p>
+                    <p>电话：138-XXXX-XXXX</p>
+                    <p>邮箱：daijin@example.com</p>
+                    <p>工作时间：周一至周五 9:00 - 18:00</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 傣族织锦纹样数字衍生品设计及展示平台 版权所有</p>
+            </div>
+    </footer>
+</body>
+</html>
