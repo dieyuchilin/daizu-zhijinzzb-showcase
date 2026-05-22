@@ -2,86 +2,72 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>傣族织锦纹样拼图游戏 | 纹样灵韵</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>傣族织锦纹样拼图游戏 | 触摸移动端适配</title>
 <style>
     * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: system-ui, 'Segoe UI', 'Microsoft YaHei', 'Noto Sans', sans-serif;
-        user-select: none; /* 避免拖拽时选中文字，提升手感 */
+        -webkit-tap-highlight-color: transparent; /* 移除移动端点击灰色背景 */
     }
 
     body {
         background: #f5efe7;
-        padding: 20px 16px;
+        padding: 16px;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
+        font-family: system-ui, 'Segoe UI', 'Microsoft YaHei', sans-serif;
     }
 
-    /* 返回首页按钮 */
     .back-home {
         display: inline-block;
-        width: fit-content;
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         padding: 8px 28px;
         background: #553c2b;
         color: #fef2e0;
-        font-size: 0.95rem;
         text-decoration: none;
         border-radius: 40px;
-        transition: all 0.2s ease;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        border: none;
-        cursor: pointer;
-    }
-    .back-home:hover {
-        background: #7a4d34;
-        transform: translateY(-1px);
+        font-size: 0.9rem;
+        transition: 0.2s;
     }
 
-    /* 主布局 */
     .main-wrap {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        gap: 32px;
+        gap: 24px;
         flex-wrap: wrap;
-        max-width: 1250px;
+        max-width: 1100px;
+        width: 100%;
         margin: 0 auto;
     }
 
-    /* 左右控制面板 */
+    /* 控制面板 */
     .ctrl-side {
         background: #fffef7;
-        padding: 24px 20px;
+        padding: 20px 18px;
         border-radius: 32px;
-        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
         width: 220px;
-        transition: all 0.2s;
-        border: 1px solid #f0e2d4;
+        flex-shrink: 0;
     }
 
     .ctrl-side h4 {
         color: #553c2b;
-        font-weight: 600;
-        font-size: 1.2rem;
-        margin-bottom: 16px;
-        text-align: center;
-        letter-spacing: 1px;
+        font-size: 1.1rem;
+        margin-bottom: 12px;
         border-left: 4px solid #b85c33;
         padding-left: 12px;
-        margin-left: 8px;
     }
 
     .pattern-select, .diff-select {
         display: flex;
         flex-direction: column;
-        gap: 12px;
-        margin-bottom: 28px;
+        gap: 10px;
+        margin-bottom: 24px;
     }
 
     .pattern-btn, .diff-btn {
@@ -89,213 +75,170 @@
         border: none;
         padding: 10px 12px;
         border-radius: 60px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         font-weight: 500;
         color: #553c2b;
         cursor: pointer;
         transition: 0.2s;
         text-align: center;
-        letter-spacing: 1px;
     }
 
     .pattern-btn.active, .diff-btn.active {
         background: #b85c33;
         color: white;
-        box-shadow: 0 4px 8px rgba(184, 92, 51, 0.3);
-    }
-
-    .pattern-btn:hover, .diff-btn:hover {
-        background: #d47c51;
-        color: white;
-        transform: scale(0.98);
     }
 
     .status-info {
         text-align: center;
         background: #faf3ea;
         border-radius: 28px;
-        padding: 14px 10px;
-        margin-top: 8px;
+        padding: 12px;
     }
     .status-info div {
-        font-size: 1.1rem;
-        font-weight: 500;
+        font-size: 1rem;
+        margin: 6px 0;
         color: #4b2e1f;
-        margin: 8px 0;
     }
     .status-info span {
         background: white;
         padding: 4px 12px;
         border-radius: 40px;
-        font-family: monospace;
         font-weight: bold;
         color: #b85c33;
-        margin-left: 6px;
+        margin-left: 8px;
     }
 
-    /* 拼图核心正方形容器 + 特效封装 */
+    /* 拼图区域 */
     .puzzle-center {
         background: #fff9f2;
-        padding: 18px;
-        border-radius: 40px;
-        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.2s;
+        padding: 16px;
+        border-radius: 32px;
+        box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        transition: box-shadow 0.3s;
     }
 
     #puzzle-container {
         display: grid;
         gap: 0;
         margin: 0 auto;
-        border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s, border-color 0.2s;
-    }
-
-    /* 胜利时外发光+边框绿色闪烁特效 */
-    .win-glow-effect {
-        animation: greenPulse 0.6s ease-in-out 3, borderGlow 0.4s ease;
-        box-shadow: 0 0 0 4px #2e7d32, 0 0 0 8px rgba(46,125,50,0.3);
-        border-radius: 24px;
-    }
-
-    @keyframes greenPulse {
-        0% { box-shadow: 0 0 0 0 #2e7d32, 0 0 0 4px rgba(46,125,50,0.5); }
-        70% { box-shadow: 0 0 0 12px #2e7d32, 0 0 0 18px rgba(46,125,50,0.2); }
-        100% { box-shadow: 0 0 0 4px #2e7d32, 0 0 0 8px rgba(46,125,50,0.4); }
-    }
-
-    @keyframes borderGlow {
-        0% { border-color: #b85c33; }
-        50% { border-color: #6fbf4c; }
-        100% { border-color: #2e7d32; }
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        /* 宽度由 JS 动态设置，保证正方形 */
     }
 
     .puzzle-piece {
         background-repeat: no-repeat;
+        background-size: cover;
+        touch-action: none;  /* 禁止触屏滚动/缩放，提升拖拽体验 */
         cursor: grab;
-        transition: filter 0.1s, transform 0.05s linear;
-        will-change: background-position;
+        transition: transform 0.05s ease;
     }
     .puzzle-piece:active {
         cursor: grabbing;
     }
     .puzzle-piece.correct {
         border: 2px solid #b85c33;
-        filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+        box-sizing: border-box;
     }
 
-    /* 模态窗 ———— 高级纹样弹窗 */
+    /* 胜利特效 */
+    .win-glow-effect {
+        animation: greenPulse 0.6s ease-in-out 3;
+        box-shadow: 0 0 0 4px #2e7d32, 0 0 0 8px rgba(46,125,50,0.3);
+        border-radius: 24px;
+    }
+
+    @keyframes greenPulse {
+        0% { box-shadow: 0 0 0 0 #2e7d32, 0 0 0 4px rgba(46,125,50,0.5); }
+        70% { box-shadow: 0 0 0 14px #2e7d32, 0 0 0 20px rgba(46,125,50,0.2); }
+        100% { box-shadow: 0 0 0 4px #2e7d32, 0 0 0 8px rgba(46,125,50,0.4); }
+    }
+
+    /* 弹窗 */
     .modal {
         display: none;
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: rgba(30, 20, 15, 0.65);
+        background: rgba(30, 20, 15, 0.7);
         backdrop-filter: blur(4px);
         z-index: 1000;
         justify-content: center;
         align-items: center;
-        animation: fadeIn 0.2s;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
     }
 
     .modal-content {
         background: #fffef9;
-        width: 90%;
-        max-width: 380px;
+        width: 85%;
+        max-width: 360px;
         border-radius: 48px;
         padding: 28px 22px 32px;
         text-align: center;
-        box-shadow: 0 30px 40px rgba(0, 0, 0, 0.3);
-        border: 1px solid #ffe2cc;
-        transition: transform 0.2s;
-        animation: modalPop 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        animation: modalPop 0.3s ease;
     }
 
     @keyframes modalPop {
-        from { transform: scale(0.92); opacity: 0; }
+        from { transform: scale(0.9); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
     }
 
-    /* 纹样缩略图 (低饱和度+柔光) */
     .pattern-preview {
-        width: 110px;
-        height: 110px;
-        margin: 0 auto 18px;
-        border-radius: 32px;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 16px;
+        border-radius: 28px;
         background-size: cover;
         background-position: center;
-        background-repeat: no-repeat;
-        filter: saturate(0.6) brightness(1.02);
-        box-shadow: 0 6px 14px rgba(0,0,0,0.15);
-        border: 2px solid #f0cfb5;
+        filter: saturate(0.65) brightness(1.02);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
     .modal-content h3 {
-        font-size: 1.9rem;
+        font-size: 1.6rem;
         color: #4b2e1f;
-        margin-bottom: 12px;
-        font-weight: 700;
-        letter-spacing: 1px;
+        margin-bottom: 10px;
     }
 
     .meaning-text {
-        background: #f9efE6;
-        padding: 12px 16px;
-        border-radius: 50px;
+        background: #f9efe6;
+        padding: 12px;
+        border-radius: 40px;
         color: #8b5a3c;
-        font-size: 1rem;
-        margin: 18px 0 12px;
-        font-weight: 500;
-        line-height: 1.4;
+        margin: 16px 0;
+        font-size: 0.9rem;
     }
 
     .close-modal {
         background: #b85c33;
         border: none;
         color: white;
-        padding: 12px 28px;
+        padding: 10px 24px;
+        border-radius: 40px;
         font-size: 1rem;
-        font-weight: 600;
-        border-radius: 80px;
-        margin-top: 12px;
         cursor: pointer;
-        transition: 0.2s;
-        letter-spacing: 1px;
-    }
-    .close-modal:hover {
-        background: #9b4a2a;
-        transform: scale(0.96);
     }
 
-    @media (max-width: 780px) {
+    /* 响应式 */
+    @media (max-width: 750px) {
         .ctrl-side {
             width: 100%;
-            max-width: 400px;
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
             justify-content: center;
+            gap: 16px;
         }
         .pattern-select, .diff-select {
             flex-direction: row;
             flex-wrap: wrap;
-            justify-content: center;
         }
-        .ctrl-side h4 {
-            width: 100%;
-            text-align: center;
+        .status-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
         .main-wrap {
-            gap: 20px;
-        }
-        .puzzle-center {
-            padding: 12px;
+            gap: 16px;
         }
     }
 </style>
@@ -305,7 +248,6 @@
 <a href="index.html" class="back-home">← 返回首页</a>
 
 <div class="main-wrap">
-    <!-- 左侧控制区 -->
     <div class="ctrl-side">
         <h4>🎨 傣韵纹样</h4>
         <div class="pattern-select">
@@ -315,11 +257,11 @@
             <button class="pattern-btn" data-id="4">🦚 雀羽呈祥</button>
         </div>
 
-        <h4>⚙️ 难度调节</h4>
+        <h4>⚙️ 难度</h4>
         <div class="diff-select">
-            <button class="diff-btn" data-level="3">3 × 3 轻松</button>
-            <button class="diff-btn" data-level="4">4 × 4 雅趣</button>
-            <button class="diff-btn" data-level="5">5 × 5 匠造</button>
+            <button class="diff-btn" data-level="3">3×3</button>
+            <button class="diff-btn" data-level="4">4×4</button>
+            <button class="diff-btn" data-level="5">5×5</button>
         </div>
 
         <div class="status-info">
@@ -328,344 +270,350 @@
         </div>
     </div>
 
-    <!-- 中间拼图区 (正方形核心) -->
     <div class="puzzle-center" id="puzzleCenterWrap">
         <div id="puzzle-container"></div>
     </div>
 </div>
 
-<!-- 定制化纹样完成弹窗（含低饱和度图+寓意） -->
 <div class="modal" id="winModal">
     <div class="modal-content">
         <div id="patternPreviewImg" class="pattern-preview"></div>
         <h3 id="patternNameTitle">八角纳福</h3>
-        <div class="meaning-text" id="meaningText">八方来财，纳福迎祥</div>
+        <div class="meaning-text" id="meaningText"></div>
         <button class="close-modal">✨ 继续织锦 ✨</button>
     </div>
 </div>
 
 <script>
-    (function(){
-        // ---------- 纹样配置（包含图片地址，寓意，以及名称）--------
-        // 请确保 pattern1.jpg ~ pattern4.jpg 与网页同目录，或更换为有效路径
-        // 为了更好的兼容，此处我用本地文件名，也可以替换为在线占位图。
-        // 若图片不存在，浏览器会显示破碎，您可替换成实际的图案url。但为了效果，demo确保演示逻辑。
-        const patterns = {
-            1: { 
-                img: 'pattern1.jpg', 
-                meaning: '八角纳福：寓意八方来财，纳福迎祥，象征团圆美满。',
-                shortName: '八角纳福',
-                lowSatPreviewBg: 'pattern1.jpg'  // 实际展示低饱和度通过css filter: saturate(0.6)
-            },
-            2: { 
-                img: 'pattern2.jpg', 
-                meaning: '吉象呈瑞：寓意万象更新，吉祥如意，庇佑平安顺遂。',
-                shortName: '吉象呈瑞',
-                lowSatPreviewBg: 'pattern2.jpg'
-            },
-            3: { 
-                img: 'pattern3.jpg', 
-                meaning: '锦寺荷居：寓意平安顺遂，清雅高洁，心归宁静。',
-                shortName: '锦寺荷居',
-                lowSatPreviewBg: 'pattern3.jpg'
-            },
-            4: { 
-                img: 'pattern4.jpg', 
-                meaning: '雀羽呈祥：寓意前程似锦，吉祥安康，展翅高飞。',
-                shortName: '雀羽呈祥',
-                lowSatPreviewBg: 'pattern4.jpg'
+    // 纹样配置
+    const patterns = {
+        1: { img: 'pattern1.jpg', meaning: '八角纳福：寓意八方来财，纳福迎祥，象征团圆美满。', shortName: '八角纳福' },
+        2: { img: 'pattern2.jpg', meaning: '吉象呈瑞：寓意万象更新，吉祥如意，庇佑平安顺遂。', shortName: '吉象呈瑞' },
+        3: { img: 'pattern3.jpg', meaning: '锦寺荷居：寓意平安顺遂，清雅高洁，心归宁静。', shortName: '锦寺荷居' },
+        4: { img: 'pattern4.jpg', meaning: '雀羽呈祥：寓意前程似锦，吉祥安康，展翅高飞。', shortName: '雀羽呈祥' }
+    };
+
+    // DOM 元素
+    const puzzleContainer = document.getElementById('puzzle-container');
+    const timeText = document.getElementById('time');
+    const stepText = document.getElementById('step');
+    const winModal = document.getElementById('winModal');
+    const meaningTextEl = document.getElementById('meaningText');
+    const patternNameTitle = document.getElementById('patternNameTitle');
+    const patternPreviewImg = document.getElementById('patternPreviewImg');
+    const closeModalBtn = document.querySelector('.close-modal');
+    const puzzleCenterWrap = document.getElementById('puzzleCenterWrap');
+
+    let curPatternId = 1;
+    let gridNum = 3;
+    let pieceSize = 0;        // 每个格子像素大小（动态计算）
+    let totalSize = 0;        // 整体正方形边长
+    let steps = 0;
+    let timer = null;
+    let startTime = 0;
+    let isGameCompleted = false;
+
+    // 触摸拖拽相关变量
+    let dragPiece = null;          // 当前被拖拽的拼图块
+    let startTouchX = 0, startTouchY = 0;
+    let dragStarted = false;
+
+    // 自适应计算拼图大小 (根据屏幕宽度)
+    function calcPuzzleSize() {
+        const screenWidth = window.innerWidth;
+        let maxSize = Math.min(screenWidth - 80, 520);  // 手机留边距
+        if (maxSize < 300) maxSize = 300;
+        // 根据难度微调
+        if (gridNum === 5) totalSize = Math.min(maxSize, 480);
+        else totalSize = Math.min(maxSize, 500);
+        pieceSize = totalSize / gridNum;
+        return { totalSize, pieceSize };
+    }
+
+    // 重置游戏状态
+    function resetGame() {
+        if (timer) clearInterval(timer);
+        steps = 0;
+        stepText.innerText = steps;
+        isGameCompleted = false;
+        puzzleCenterWrap.classList.remove('win-glow-effect');
+        startTime = Date.now();
+        timer = setInterval(() => {
+            if (!isGameCompleted) {
+                let elapsed = Math.floor((Date.now() - startTime) / 1000);
+                let m = Math.floor(elapsed / 60);
+                let s = elapsed % 60;
+                timeText.innerText = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            }
+        }, 1000);
+    }
+
+    // 生成拼图（打乱）
+    function initPuzzle() {
+        resetGame();
+        calcPuzzleSize();
+
+        const imgUrl = patterns[curPatternId].img;
+        puzzleContainer.style.width = totalSize + 'px';
+        puzzleContainer.style.height = totalSize + 'px';
+        puzzleContainer.style.gridTemplateColumns = `repeat(${gridNum}, 1fr)`;
+        puzzleContainer.style.gridTemplateRows = `repeat(${gridNum}, 1fr)`;
+
+        const pieces = [];
+        const correctPositions = [];
+
+        // 创建所有拼图块
+        for (let row = 0; row < gridNum; row++) {
+            for (let col = 0; col < gridNum; col++) {
+                const piece = document.createElement('div');
+                piece.className = 'puzzle-piece';
+                const bgX = -col * pieceSize;
+                const bgY = -row * pieceSize;
+                piece.style.backgroundImage = `url(${imgUrl})`;
+                piece.style.backgroundSize = `${totalSize}px ${totalSize}px`;
+                piece.style.backgroundPosition = `${bgX}px ${bgY}px`;
+                piece.dataset.rightX = bgX;
+                piece.dataset.rightY = bgY;
+                piece.dataset.row = row;
+                piece.dataset.col = col;
+                piece.dataset.index = pieces.length;
+
+                // 存储正确位置字符串
+                correctPositions.push(`${bgX}px ${bgY}px`);
+                pieces.push(piece);
+            }
+        }
+
+        // 随机打乱
+        for (let i = pieces.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pieces[i], pieces[j]] = [pieces[j], pieces[i]];
+        }
+
+        // 清空并追加
+        puzzleContainer.innerHTML = '';
+        pieces.forEach(piece => puzzleContainer.appendChild(piece));
+        puzzleContainer.correctPosArray = correctPositions;
+
+        // 绑定事件 (同时支持鼠标和触摸)
+        bindDragEvents();
+
+        // 刷新正确边框样式
+        refreshCorrectBorder();
+    }
+
+    // 统一绑定拖拽 (触摸 + 鼠标)
+    function bindDragEvents() {
+        const pieces = document.querySelectorAll('.puzzle-piece');
+        pieces.forEach(piece => {
+            // 移除旧监听避免重复
+            piece.removeEventListener('touchstart', onTouchStart);
+            piece.removeEventListener('touchmove', onTouchMove);
+            piece.removeEventListener('touchend', onTouchEnd);
+            piece.removeEventListener('mousedown', onMouseDown);
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+            
+            // 触摸事件
+            piece.addEventListener('touchstart', onTouchStart, { passive: false });
+            piece.addEventListener('touchmove', onTouchMove, { passive: false });
+            piece.addEventListener('touchend', onTouchEnd);
+            // 鼠标事件
+            piece.addEventListener('mousedown', onMouseDown);
+        });
+    }
+
+    // 触摸开始
+    function onTouchStart(e) {
+        if (isGameCompleted) {
+            e.preventDefault();
+            return;
+        }
+        e.preventDefault();
+        const touch = e.touches[0];
+        dragPiece = this;
+        startTouchX = touch.clientX;
+        startTouchY = touch.clientY;
+        dragStarted = true;
+        this.style.opacity = '0.7';
+    }
+
+    // 触摸移动 - 检测滑动方向并交换
+    function onTouchMove(e) {
+        if (!dragStarted || !dragPiece || isGameCompleted) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        const deltaX = touch.clientX - startTouchX;
+        const deltaY = touch.clientY - startTouchY;
+        
+        // 移动阈值超过20像素才触发交换，避免误触
+        if (Math.abs(deltaX) < 20 && Math.abs(deltaY) < 20) return;
+        
+        // 找到目标元素 (触摸点下的元素)
+        const targetElem = document.elementFromPoint(touch.clientX, touch.clientY);
+        let targetPiece = targetElem?.closest('.puzzle-piece');
+        
+        if (targetPiece && targetPiece !== dragPiece) {
+            // 执行交换
+            swapPieces(dragPiece, targetPiece);
+            // 交换后重置拖拽状态
+            dragPiece.style.opacity = '';
+            dragPiece = null;
+            dragStarted = false;
+        } else {
+            dragPiece.style.opacity = '';
+            dragPiece = null;
+            dragStarted = false;
+        }
+    }
+
+    function onTouchEnd(e) {
+        if (dragPiece) {
+            dragPiece.style.opacity = '';
+        }
+        dragPiece = null;
+        dragStarted = false;
+    }
+
+    // 鼠标事件
+    function onMouseDown(e) {
+        if (isGameCompleted) return;
+        e.preventDefault();
+        dragPiece = this;
+        this.style.opacity = '0.7';
+        
+        const onMouseMoveHandler = (moveEvent) => {
+            if (!dragPiece) return;
+            const target = document.elementFromPoint(moveEvent.clientX, moveEvent.clientY);
+            let targetPiece = target?.closest('.puzzle-piece');
+            if (targetPiece && targetPiece !== dragPiece) {
+                swapPieces(dragPiece, targetPiece);
+                dragPiece.style.opacity = '';
+                dragPiece = null;
+                document.removeEventListener('mousemove', onMouseMoveHandler);
+                document.removeEventListener('mouseup', onMouseUpHandler);
             }
         };
-
-        // DOM 元素
-        const puzzleContainer = document.getElementById('puzzle-container');
-        const timeText = document.getElementById('time');
-        const stepText = document.getElementById('step');
-        const winModal = document.getElementById('winModal');
-        const meaningTextEl = document.getElementById('meaningText');
-        const patternNameTitle = document.getElementById('patternNameTitle');
-        const patternPreviewImg = document.getElementById('patternPreviewImg');
-        const closeModalBtn = document.querySelector('.close-modal');
-        const puzzleCenterWrap = document.getElementById('puzzleCenterWrap'); // 用于特效外框
-
-        let curPatternId = 1;          // 当前纹样id
-        let gridNum = 3;               // 当前难度 3/4/5
-        let squareTotalSize = 450;     // 正方形总边长(px)
-        let steps = 0;
-        let timer = null;
-        let startTime = 0;
-        let dragTarget = null;
-        let isGameCompleted = false;    // 防止重复触发特效/弹窗
-
-        // 辅助函数：停止计时器
-        function stopTimer() {
-            if(timer) {
-                clearInterval(timer);
-                timer = null;
-            }
-        }
-
-        // 重置计时与步数
-        function resetStats() {
-            steps = 0;
-            stepText.innerText = steps;
-            if(timer) clearInterval(timer);
-            startTime = Date.now();
-            timer = setInterval(countTime, 1000);
-            isGameCompleted = false;   // 新游戏重置胜利标记
-            // 移除拼图容器的胜利特效边框
-            if(puzzleCenterWrap) puzzleCenterWrap.classList.remove('win-glow-effect');
-        }
-
-        // 计时更新
-        function countTime() {
-            if(isGameCompleted) return; // 如果已经胜利不再更新时间显示，避免微微变动，但是胜利后已clear，不过安全起见
-            let elapsed = Math.floor((Date.now() - startTime) / 1000);
-            let m = Math.floor(elapsed / 60);
-            let s = elapsed % 60;
-            timeText.innerText = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
-        }
-
-        // 核心：初始化/重置拼图（打乱、重新生成网格）
-        function initPuzzle() {
-            // 清除胜利模态框残留显示
-            winModal.style.display = 'none';
-            // 移除特效
-            if(puzzleCenterWrap) puzzleCenterWrap.classList.remove('win-glow-effect');
-            // 重置胜利标记
-            isGameCompleted = false;
-            // 重置计时和步数
-            stopTimer();
-            resetStats();  // 内部重新启动计时器
-
-            // 获取当前图片URL
-            let imgUrl = patterns[curPatternId].img;
-
-            // 动态计算每个格子实际宽高 (基于grid 均分)
-            let itemSize = squareTotalSize / gridNum;
-            // 设置容器grid样式
-            puzzleContainer.style.width = squareTotalSize + "px";
-            puzzleContainer.style.height = squareTotalSize + "px";
-            puzzleContainer.style.gridTemplateColumns = `repeat(${gridNum}, 1fr)`;
-            puzzleContainer.style.gridTemplateRows = `repeat(${gridNum}, 1fr)`;
-
-            // 存储每个格子应有的正确背景位置 (rightX, rightY)
-            let correctPositions = [];
-            let pieceElements = [];
-
-            // 生成所有拼图块（未打乱）
-            for(let row = 0; row < gridNum; row++) {
-                for(let col = 0; col < gridNum; col++) {
-                    const piece = document.createElement('div');
-                    piece.className = 'puzzle-piece';
-                    // 计算背景偏移量：左偏移 -col*itemSize, 上偏移 -row*itemSize
-                    const bgX = -col * itemSize;
-                    const bgY = -row * itemSize;
-                    piece.style.backgroundImage = `url(${imgUrl})`;
-                    piece.style.backgroundSize = `${squareTotalSize}px ${squareTotalSize}px`;
-                    piece.style.backgroundPosition = `${bgX}px ${bgY}px`;
-                    piece.style.backgroundRepeat = 'no-repeat';
-                    
-                    // 记录原始正确坐标字符串
-                    piece.dataset.rightX = bgX;
-                    piece.dataset.rightY = bgY;
-                    const correctPos = `${bgX}px ${bgY}px`;
-                    correctPositions.push(correctPos);
-                    
-                    // 拖拽设置
-                    piece.draggable = true;
-                    piece.addEventListener('dragstart', handleDragStart);
-                    piece.addEventListener('dragover', (e) => e.preventDefault());
-                    piece.addEventListener('drop', handleDrop);
-                    
-                    pieceElements.push(piece);
-                }
-            }
-
-            // Fisher-Yates 随机打乱拼图顺序
-            for(let i = pieceElements.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [pieceElements[i], pieceElements[j]] = [pieceElements[j], pieceElements[i]];
-            }
-
-            // 清空容器并追加打乱的拼图块
-            puzzleContainer.innerHTML = '';
-            pieceElements.forEach(piece => puzzleContainer.appendChild(piece));
-            
-            // 保存正确顺序数组到容器，用于校验
-            puzzleContainer.correctPosArray = correctPositions;
-            
-            // 给所有块添加正确/不正确样式初始检测
-            checkAllCorrect(false);  // 只刷新样式，不触发胜利弹窗（因为刚开始未完成）
-        }
-
-        // 拖拽开始
-        function handleDragStart(e) {
-            if(isGameCompleted) {
-                e.preventDefault();
-                return false;
-            }
-            dragTarget = this;
-            e.dataTransfer.effectAllowed = 'move';
-        }
-
-        // 拖拽交换
-        function handleDrop(e) {
-            e.preventDefault();
-            if(isGameCompleted) return;
-            if(!dragTarget || dragTarget === this) return;
-            
-            // 交换两个拼图块的 backgroundPosition
-            const tempBg = dragTarget.style.backgroundPosition;
-            dragTarget.style.backgroundPosition = this.style.backgroundPosition;
-            this.style.backgroundPosition = tempBg;
-            
-            // 增加步数
-            steps++;
-            stepText.innerText = steps;
-            
-            // 每次交换后检查是否完成
-            checkAllCorrect(true);
-        }
-
-        // 检查拼图是否全部归位，根据correctPosArray对比每个块的backgroundPosition
-        // showWin: 如果完成就触发胜利特效与弹窗
-        function checkAllCorrect(triggerWin = true) {
-            const pieces = puzzleContainer.querySelectorAll('.puzzle-piece');
-            const correctArray = puzzleContainer.correctPosArray;
-            if(!correctArray || pieces.length !== correctArray.length) return false;
-            
-            let allMatched = true;
-            pieces.forEach((piece, idx) => {
-                let currentPos = piece.style.backgroundPosition;
-                // 不同浏览器可能返回带px或者空格，统一标准化比较: 去除空格并trim对比
-                let normalizedCurrent = currentPos.trim().replace(/\s+/g, ' ');
-                let normalizedRight = correctArray[idx].trim().replace(/\s+/g, ' ');
-                if(normalizedCurrent === normalizedRight) {
-                    piece.classList.add('correct');
-                } else {
-                    piece.classList.remove('correct');
-                    allMatched = false;
-                }
-            });
-            
-            // 已完成且需要触发胜利事件 && 防止重复触发
-            if(allMatched && triggerWin && !isGameCompleted) {
-                isGameCompleted = true;
-                // 停止计时
-                stopTimer();
-                // 1. 给拼图外框增加绿色流光特效（最外部边框区域）
-                if(puzzleCenterWrap) {
-                    puzzleCenterWrap.classList.add('win-glow-effect');
-                    // 额外保险：3秒后移除特效动画保持但会保留最终阴影不过不影响下一次游戏
-                    setTimeout(() => {
-                        if(puzzleCenterWrap && !isGameCompleted === false) {
-                            // 如果不重新开始游戏，特效可以保留但下次初始化会移除，无碍
-                        }
-                    }, 1000);
-                }
-                // 2. 显示富文本弹窗：低饱和度纹样预览图+对应寓意
-                showPatternWinModal();
-            }
-            return allMatched;
-        }
         
-        // 显示带纹样低饱和度图片及寓意的弹窗
-        function showPatternWinModal() {
-            const patternData = patterns[curPatternId];
-            if(!patternData) return;
-            
-            // 设置弹窗文本内容
-            patternNameTitle.innerText = patternData.shortName;
-            meaningTextEl.innerText = patternData.meaning;
-            
-            // 设置预览图片背景（低饱和度通过css滤镜实现）
-            const previewUrl = patternData.lowSatPreviewBg || patternData.img;
-            // 样式上我们已经给 pattern-preview 设置了 filter: saturate(0.6) ，实现低饱和度效果
-            patternPreviewImg.style.backgroundImage = `url(${previewUrl})`;
+        const onMouseUpHandler = () => {
+            if (dragPiece) dragPiece.style.opacity = '';
+            dragPiece = null;
+            document.removeEventListener('mousemove', onMouseMoveHandler);
+            document.removeEventListener('mouseup', onMouseUpHandler);
+        };
+        
+        document.addEventListener('mousemove', onMouseMoveHandler);
+        document.addEventListener('mouseup', onMouseUpHandler);
+    }
+
+    // 交换两个拼图块
+    function swapPieces(pieceA, pieceB) {
+        if (!pieceA || !pieceB || isGameCompleted) return;
+        
+        const tempBg = pieceA.style.backgroundPosition;
+        pieceA.style.backgroundPosition = pieceB.style.backgroundPosition;
+        pieceB.style.backgroundPosition = tempBg;
+        
+        steps++;
+        stepText.innerText = steps;
+        
+        refreshCorrectBorder();
+        checkWin();
+    }
+
+    // 刷新正确边框
+    function refreshCorrectBorder() {
+        const pieces = document.querySelectorAll('.puzzle-piece');
+        const correctArray = puzzleContainer.correctPosArray;
+        if (!correctArray) return;
+        pieces.forEach((piece, idx) => {
+            const currentPos = piece.style.backgroundPosition.trim().replace(/\s+/g, ' ');
+            const rightPos = correctArray[idx].trim().replace(/\s+/g, ' ');
+            if (currentPos === rightPos) {
+                piece.classList.add('correct');
+            } else {
+                piece.classList.remove('correct');
+            }
+        });
+    }
+
+    // 胜利检测
+    function checkWin() {
+        const pieces = document.querySelectorAll('.puzzle-piece');
+        const correctArray = puzzleContainer.correctPosArray;
+        let allMatch = true;
+        pieces.forEach((piece, idx) => {
+            const current = piece.style.backgroundPosition.trim().replace(/\s+/g, ' ');
+            const right = correctArray[idx].trim().replace(/\s+/g, ' ');
+            if (current !== right) allMatch = false;
+        });
+        
+        if (allMatch && !isGameCompleted) {
+            isGameCompleted = true;
+            if (timer) clearInterval(timer);
+            // 特效
+            puzzleCenterWrap.classList.add('win-glow-effect');
+            // 弹出纹样弹窗
+            const data = patterns[curPatternId];
+            patternNameTitle.innerText = data.shortName;
+            meaningTextEl.innerText = data.meaning;
+            patternPreviewImg.style.backgroundImage = `url(${data.img})`;
             patternPreviewImg.style.backgroundSize = 'cover';
-            patternPreviewImg.style.backgroundPosition = 'center';
-            
-            // 显示模态框
             winModal.style.display = 'flex';
         }
-        
-        // 关闭弹窗，无额外动作，但保留拼图完成状态，用户可继续点击新游戏
-        function closeModalHandler() {
-            winModal.style.display = 'none';
-            // 注意：关闭弹窗后，游戏停留在胜利界面（拼图不可交换？为了体验，胜利后不再允许拖动）
-            // 但用户如果切换纹样或者难度会自动重置，因此无需额外限制。
-        }
-        
-        // 切换纹样
-        function changePattern(patternId) {
-            if(isGameCompleted) {
-                // 如果当前已经胜利，切换纹样会重新开始，清除标记
-            }
-            curPatternId = patternId;
-            // 重置所有状态并初始化拼图
+    }
+
+    // 切换纹样
+    function changePattern(id) {
+        curPatternId = id;
+        initPuzzle();
+    }
+    
+    function changeDifficulty(level) {
+        gridNum = level;
+        initPuzzle();
+    }
+
+    // 事件绑定
+    document.querySelectorAll('.pattern-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = parseInt(btn.dataset.id);
+            document.querySelectorAll('.pattern-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            changePattern(id);
+        });
+    });
+    
+    document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const level = parseInt(btn.dataset.level);
+            document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            changeDifficulty(level);
+        });
+    });
+    
+    closeModalBtn.onclick = () => {
+        winModal.style.display = 'none';
+    };
+    winModal.onclick = (e) => {
+        if (e.target === winModal) winModal.style.display = 'none';
+    };
+    
+    // 窗口自适应
+    window.addEventListener('resize', () => {
+        if (!isGameCompleted) {
+            // 重新计算并刷新布局（简单重新初始化）
             initPuzzle();
         }
-        
-        // 切换难度
-        function changeDifficulty(level) {
-            gridNum = level;
-            // 根据网格数微调整大小 保证视觉舒适: 3x3用450px; 4x4用500px; 5x5用500px
-            if(gridNum === 3) squareTotalSize = 450;
-            else if(gridNum === 4) squareTotalSize = 500;
-            else if(gridNum === 5) squareTotalSize = 520;
-            else squareTotalSize = 450;
-            initPuzzle();
-        }
-        
-        // 绑定UI事件：纹样按钮
-        document.querySelectorAll('.pattern-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = parseInt(btn.dataset.id);
-                if(isNaN(id)) return;
-                // 更新active样式
-                document.querySelectorAll('.pattern-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                changePattern(id);
-            });
-        });
-        
-        // 难度按钮事件
-        document.querySelectorAll('.diff-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const level = parseInt(btn.dataset.level);
-                if(isNaN(level)) return;
-                document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                changeDifficulty(level);
-            });
-        });
-        
-        // 关闭弹窗
-        if(closeModalBtn) {
-            closeModalBtn.addEventListener('click', closeModalHandler);
-        }
-        // 点击模态背景关闭（可选优雅）
-        winModal.addEventListener('click', (e) => {
-            if(e.target === winModal) closeModalHandler();
-        });
-        
-        // 为防止默认图片加载失败时影响体验，预先在控制台提醒，但不影响游戏机制
-        // 页面启动默认激活第一个纹样按钮和第一个难度
-        window.onload = () => {
-            // 默认激活样式
-            const defaultPattern = document.querySelector('.pattern-btn[data-id="1"]');
-            if(defaultPattern) defaultPattern.classList.add('active');
-            const defaultDiff = document.querySelector('.diff-btn[data-level="3"]');
-            if(defaultDiff) defaultDiff.classList.add('active');
-            curPatternId = 1;
-            gridNum = 3;
-            squareTotalSize = 450;
-            initPuzzle();
-        };
-        
-        // 暴露额外清除避免内存问题
-    })();
+    });
+    
+    // 启动
+    window.onload = () => {
+        document.querySelector('.pattern-btn[data-id="1"]').classList.add('active');
+        document.querySelector('.diff-btn[data-level="3"]').classList.add('active');
+        initPuzzle();
+    };
 </script>
 </body>
 </html>
